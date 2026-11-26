@@ -1,0 +1,15 @@
+{
+  "policy_version": "prototype-1",
+  "high_threshold": 0.97,
+  "low_threshold": 0.8,
+  "high_duration_ms": 2000,
+  "low_duration_ms": 1000,
+  "smoothing_tau_ms": 500,
+  "max_gap_ms": 500,
+  "cooldown_ms": 2000,
+  "uncertainty_threshold": 0.6,
+  "representative_limit": 5,
+  "queue_capacity": 128,
+  "max_sessions": 32,
+  "max_frames_per_session": 100000
+}

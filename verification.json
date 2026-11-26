@@ -1,0 +1,111 @@
+{
+  "status": "passed",
+  "release": "handover-v1",
+  "repository_tests": 60,
+  "container_tests": 28,
+  "native": {
+    "status": "passed",
+    "device": "cpu",
+    "final_holdout_used": false,
+    "models": {
+      "resnet18": {
+        "api_cpu_vs_saved_mps_max_probability_error": 9.76869396207558e-07,
+        "parity_images": 12,
+        "replay_frames": 65,
+        "opens": 1,
+        "recovery_closes": 1,
+        "queue_persist_ack_flow": true,
+        "replay_seconds": 1.3259616659997846
+      },
+      "resnet18_ensemble": {
+        "api_cpu_vs_saved_mps_max_probability_error": 4.821862960441292e-07,
+        "parity_images": 12,
+        "replay_frames": 65,
+        "opens": 1,
+        "recovery_closes": 1,
+        "queue_persist_ack_flow": true,
+        "replay_seconds": 2.5650376660050824
+      },
+      "resnet50": {
+        "api_cpu_vs_saved_mps_max_probability_error": 6.842568185949638e-07,
+        "parity_images": 12,
+        "replay_frames": 65,
+        "opens": 1,
+        "recovery_closes": 1,
+        "queue_persist_ack_flow": true,
+        "replay_seconds": 2.5697654169998714
+      }
+    },
+    "scope": "CPU TestClient with real weights; 12 validation images/model for parity and 65 repeated-frame mechanics replay/model. Not real-video evaluation."
+  },
+  "linux_container": {
+    "status": "passed",
+    "final_holdout_used": false,
+    "scope": "Local Linux container, actual HTTP requests and real model weights. Synthetic repeated-frame replay, not real video.",
+    "models": {
+      "resnet18": {
+        "parity_images": 12,
+        "max_probability_difference": 1.7661361804144349e-06,
+        "replay_frames": 65,
+        "opens": 1,
+        "recovery_closes": 1,
+        "queue_ack": true
+      },
+      "resnet18_ensemble": {
+        "parity_images": 12,
+        "max_probability_difference": 9.019568276702472e-07,
+        "replay_frames": 65,
+        "opens": 1,
+        "recovery_closes": 1,
+        "queue_ack": true
+      },
+      "resnet50": {
+        "parity_images": 12,
+        "max_probability_difference": 5.46796788736259e-07,
+        "replay_frames": 65,
+        "opens": 1,
+        "recovery_closes": 1,
+        "queue_ack": true
+      }
+    },
+    "image": "sha256:a12272ac7e72958379caaf6d5417b27ab98b7efc885a3d0407b5caa4e9500652 linux/arm64",
+    "container_tests_passed": true,
+    "container_packages": [
+      "annotated-doc==0.0.5",
+      "annotated-types==0.8.0",
+      "anyio==4.15.1",
+      "certifi==2026.7.22",
+      "click==8.5.0",
+      "fastapi==0.141.1",
+      "filelock==4.0.4",
+      "fsspec==2026.9.0",
+      "h11==0.16.0",
+      "httpcore==1.0.9",
+      "httpx==0.28.1",
+      "idna==3.20",
+      "Jinja2==3.1.6",
+      "MarkupSafe==3.0.3",
+      "mpmath==1.3.0",
+      "networkx==3.7",
+      "numpy==2.5.3",
+      "packaging==26.3",
+      "pillow==12.3.0",
+      "pydantic==2.13.5",
+      "pydantic_core==2.46.5",
+      "safedrive @ file:///app",
+      "setuptools==84.0.0",
+      "starlette==1.7.0",
+      "sympy==1.14.0",
+      "torch==2.14.0+cpu",
+      "torchvision==0.29.0+cpu",
+      "typing-inspection==0.4.4",
+      "typing_extensions==4.16.0",
+      "uvicorn==0.54.0",
+      "wheel==0.48.0"
+    ]
+  },
+  "stage3_bundle_unchanged": true,
+  "manifest_unchanged": true,
+  "final_holdout_used": false,
+  "dependency_check": "Docker pip check: no broken requirements found"
+}

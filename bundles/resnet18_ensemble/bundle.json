@@ -1,0 +1,15 @@
+{
+  "schema_version": 4,
+  "model_version": "existing_resnet18_probability_ensemble",
+  "members": [
+    {
+      "path": "member0",
+      "metadata_sha256": "fa4119fab3115ee94e72f9bd43903174475f0a25fa71243acd8595461fbb78a2"
+    },
+    {
+      "path": "member1",
+      "metadata_sha256": "bec8f01f67272ab6481601a49be13f8eaec378c1dc9c12d437f24be16eb614bf"
+    }
+  ],
+  "scope": "Equal-weight probability mean; original development split; uncalibrated; not a temporal policy."
+}

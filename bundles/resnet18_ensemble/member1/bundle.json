@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "candidate": {
+    "name": "resnet_high320",
+    "architecture": "resnet18",
+    "size": 320,
+    "objective": "multiclass",
+    "gradual": false,
+    "batch_size": 32
+  },
+  "model_version": "seed2_resnet_high320",
+  "weights_sha256": "b403cd86a4d78cdbd4b614b92525511767c6a54c724033464aa871c08f72a6af",
+  "temperatures": {
+    "class": 1.0,
+    "binary": 1.0
+  },
+  "score_source": "1-p_safe",
+  "class_names": [
+    "safe driving",
+    "texting - right",
+    "talking on the phone - right",
+    "texting - left",
+    "talking on the phone - left",
+    "operating the radio",
+    "drinking",
+    "reaching behind",
+    "hair and makeup",
+    "talking to passenger"
+  ],
+  "scope": "Development experimental classifier; temporal monitoring not implemented."
+}

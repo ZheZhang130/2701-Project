@@ -1,0 +1,104 @@
+[
+  {
+    "id": "demo-driver-01",
+    "name": "Demo Driver 01",
+    "author": "OpenAI image generation \u00b7 fictional staged scenes",
+    "license": "AI-generated demo images",
+    "license_url": "/media/demo-generation.txt",
+    "source_url": "/media/driver-sequences-contact-sheet.png",
+    "frames": [
+      {
+        "file": "driver-01-frame-01.jpg",
+        "class_id": 0
+      },
+      {
+        "file": "driver-01-frame-02.jpg",
+        "class_id": 1
+      },
+      {
+        "file": "driver-01-frame-03.jpg",
+        "class_id": 2
+      },
+      {
+        "file": "driver-01-frame-04.jpg",
+        "class_id": 6
+      },
+      {
+        "file": "driver-01-frame-05.jpg",
+        "class_id": 7
+      },
+      {
+        "file": "driver-01-frame-06.jpg",
+        "class_id": 1
+      }
+    ]
+  },
+  {
+    "id": "demo-driver-02",
+    "name": "Demo Driver 02",
+    "author": "OpenAI image generation \u00b7 fictional staged scenes",
+    "license": "AI-generated demo images",
+    "license_url": "/media/demo-generation.txt",
+    "source_url": "/media/driver-sequences-contact-sheet.png",
+    "frames": [
+      {
+        "file": "driver-02-frame-01.jpg",
+        "class_id": 0
+      },
+      {
+        "file": "driver-02-frame-02.jpg",
+        "class_id": 1
+      },
+      {
+        "file": "driver-02-frame-03.jpg",
+        "class_id": 2
+      },
+      {
+        "file": "driver-02-frame-04.jpg",
+        "class_id": 6
+      },
+      {
+        "file": "driver-02-frame-05.jpg",
+        "class_id": 7
+      },
+      {
+        "file": "driver-02-frame-06.jpg",
+        "class_id": 1
+      }
+    ]
+  },
+  {
+    "id": "demo-driver-03",
+    "name": "Demo Driver 03",
+    "author": "OpenAI image generation \u00b7 fictional staged scenes",
+    "license": "AI-generated demo images",
+    "license_url": "/media/demo-generation.txt",
+    "source_url": "/media/driver-sequences-contact-sheet.png",
+    "frames": [
+      {
+        "file": "driver-03-frame-01.jpg",
+        "class_id": 0
+      },
+      {
+        "file": "driver-03-frame-02.jpg",
+        "class_id": 1
+      },
+      {
+        "file": "driver-03-frame-03.jpg",
+        "class_id": 2
+      },
+      {
+        "file": "driver-03-frame-04.jpg",
+        "class_id": 6
+      },
+      {
+        "file": "driver-03-frame-05.jpg",
+        "class_id": 7
+      },
+      {
+        "file": "driver-03-frame-06.jpg",
+        "class_id": 1
+      }
+    ]
+  }
+]

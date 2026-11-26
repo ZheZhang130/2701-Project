@@ -1,0 +1,628 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SafeDrive model comparison",
+    "description": "Experimental frame scoring and in-memory review queues. One process only.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/healthz": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_healthz_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/models": {
+      "get": {
+        "summary": "Models",
+        "operationId": "models_v1_models_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/v1/models/{model_id}/predict": {
+      "post": {
+        "summary": "Predict",
+        "operationId": "predict_v1_models__model_id__predict_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "model_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Model Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "image/jpeg": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/models/{model_id}/frames": {
+      "post": {
+        "summary": "Frame",
+        "operationId": "frame_v1_models__model_id__frames_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "model_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Model Id"
+            }
+          },
+          {
+            "name": "session_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "title": "Session Id"
+            }
+          },
+          {
+            "name": "frame_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "title": "Frame Id"
+            }
+          },
+          {
+            "name": "timestamp_ms",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "title": "Timestamp Ms"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelFrameResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "image/jpeg": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/models/{model_id}/sessions/{session_id}/close": {
+      "post": {
+        "summary": "Close",
+        "operationId": "close_v1_models__model_id__sessions__session_id__close_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "model_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Model Id"
+            }
+          },
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/models/{model_id}/queue": {
+      "get": {
+        "summary": "Queue",
+        "operationId": "queue_v1_models__model_id__queue_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "model_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Model Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/models/{model_id}/queue/{event_id}/ack": {
+      "post": {
+        "summary": "Acknowledge",
+        "operationId": "acknowledge_v1_models__model_id__queue__event_id__ack_post",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "model_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Model Id"
+            }
+          },
+          {
+            "name": "event_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Event Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ModelFrameResult": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "policy_version": {
+            "type": "string",
+            "title": "Policy Version"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "frame_id": {
+            "type": "string",
+            "title": "Frame Id"
+          },
+          "timestamp_ms": {
+            "type": "integer",
+            "title": "Timestamp Ms"
+          },
+          "predicted_class": {
+            "type": "integer",
+            "title": "Predicted Class"
+          },
+          "probabilities": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Probabilities"
+          },
+          "frame_score": {
+            "type": "number",
+            "title": "Frame Score"
+          },
+          "smoothed_score": {
+            "type": "number",
+            "title": "Smoothed Score"
+          },
+          "uncertain": {
+            "type": "boolean",
+            "title": "Uncertain"
+          },
+          "review_event": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReviewEvent"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "model_id": {
+            "type": "string",
+            "title": "Model Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema_version",
+          "model_version",
+          "policy_version",
+          "session_id",
+          "frame_id",
+          "timestamp_ms",
+          "predicted_class",
+          "probabilities",
+          "frame_score",
+          "smoothed_score",
+          "uncertain",
+          "review_event",
+          "model_id"
+        ],
+        "title": "ModelFrameResult"
+      },
+      "PredictionResult": {
+        "properties": {
+          "model_id": {
+            "type": "string",
+            "title": "Model Id"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "probabilities": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "maxItems": 10,
+            "minItems": 10,
+            "title": "Probabilities"
+          },
+          "predicted_class": {
+            "type": "integer",
+            "maximum": 9.0,
+            "minimum": 0.0,
+            "title": "Predicted Class"
+          },
+          "frame_score": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Frame Score"
+          }
+        },
+        "type": "object",
+        "required": [
+          "model_id",
+          "model_version",
+          "probabilities",
+          "predicted_class",
+          "frame_score"
+        ],
+        "title": "PredictionResult"
+      },
+      "ReviewEvent": {
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "title": "Event Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "opened",
+              "updated",
+              "closed"
+            ],
+            "title": "Status"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "start_timestamp_ms": {
+            "type": "integer",
+            "title": "Start Timestamp Ms"
+          },
+          "end_timestamp_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Timestamp Ms"
+          },
+          "peak_score": {
+            "type": "number",
+            "title": "Peak Score"
+          },
+          "representative_frame_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Representative Frame Ids"
+          },
+          "triggered_timestamp_ms": {
+            "type": "integer",
+            "title": "Triggered Timestamp Ms"
+          },
+          "last_timestamp_ms": {
+            "type": "integer",
+            "title": "Last Timestamp Ms"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "policy_version": {
+            "type": "string",
+            "title": "Policy Version"
+          },
+          "closure_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "recovery",
+                  "gap",
+                  "session_closed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Closure Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_id",
+          "status",
+          "session_id",
+          "start_timestamp_ms",
+          "end_timestamp_ms",
+          "peak_score",
+          "representative_frame_ids",
+          "triggered_timestamp_ms",
+          "last_timestamp_ms",
+          "model_version",
+          "policy_version"
+        ],
+        "title": "ReviewEvent"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "APIKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}

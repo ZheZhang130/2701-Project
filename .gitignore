@@ -1,0 +1,76 @@
+# macOS and editors
+.DS_Store
+.AppleDouble
+._*
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python environments and generated files
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# JavaScript dependencies and generated builds
+node_modules/
+.vite/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+
+# Credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+.aws/
+.ssh/
+.codex/
+.agents/
+*.pem
+*.key
+
+# Driver uploads, predictions, alerts, and runtime state
+/backend/data/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# Trained weights and datasets: distribute separately from source control
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.safetensors
+/datasets/
+/artifacts/
+
+# Local previews and authoring output
+/demo-*-preview.png
+/.codex-finalizer/
+/output/
+/tmp/
+
+# Superseded photos from the original demo fixtures
+/backend/demo_assets/texting.jpg
+/backend/demo_assets/man-texting.jpg
+/backend/demo_assets/phone.jpg
+
+# Local test photo and unrelated homework
+/examples/test1.jpg
+/Fall26_HW8_Transformer_part1_completed.ipynb
+/copy_of_fall26_hw8_transformer_part1_completed.py
+.ipynb_checkpoints/

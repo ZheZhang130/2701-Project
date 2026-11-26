@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "scope": "Research prototype. Synthetic replay validates mechanics only. Policy is provisional; model is uncalibrated.",
+  "source_run": "screen_resnet_high320",
+  "manifest_sha256": "2a0444a1819b41bd791bf6cf5b8f0030ad1c0f2afd5ee694d745c460428d7274",
+  "final_holdout_used": false,
+  "sha256": {
+    "model.pt": "e51ab0fff51c22d2cdb694c1fd4d4c25898457e73d5b7eb5426ac28c67755f94",
+    "bundle.json": "fa4119fab3115ee94e72f9bd43903174475f0a25fa71243acd8595461fbb78a2",
+    "monitoring.json": "087b0b83cbf7d3482a2757808aba7db8438ed1b0b6e5402cff39694365d93a2d"
+  },
+  "source_sha256": {
+    "src/safedrive/monitoring.py": "c74bce9ff0ffa906c90a2734f4d1c305f46e7da7d7dc08c781330ae2865a5611",
+    "src/safedrive/contracts.py": "ba23e80f7e422594192c7b97b1961e57d709ed4a7fc7d873bcf7842dcb9bb205",
+    "src/safedrive/experiments.py": "95b44bb4e75995c6049b3c3ed66760d194ce55319b51598d90d563f0aaebbe1a",
+    "src/safedrive/model.py": "3d66b4558fb089972b1b8e2e29c48fd1004096af9f4111019c6f5f3d14614864"
+  }
+}

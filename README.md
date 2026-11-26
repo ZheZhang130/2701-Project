@@ -17,23 +17,20 @@ Stage 3 baseline bundle is copied unchanged. See included model-comparison repor
 
 ## GitHub source checkout
 
-The Git repository includes application code, model metadata, tests, documentation,
-and the current synthetic demo assets. It excludes installed dependencies, runtime
-driver data, secrets, unrelated homework, and trained model weights.
+The Git repository includes application code, all four released model weight files,
+model metadata, tests, documentation, and the current synthetic demo assets.
+It excludes installed dependencies, runtime driver data, secrets, unrelated homework,
+and experimental weights outside the released bundles.
 
 For the React/FastAPI dashboard setup, see [APP_DEMO.md](APP_DEMO.md).
-Before starting the ML API or building its Docker image from a Git checkout,
-restore these unchanged weight files from the original handover package:
+A normal Git clone includes the weights for ResNet18, both ResNet18 ensemble members,
+and ResNet50. No separate model download or Git LFS setup is required. Install the
+ML runtime dependencies before starting inference or use the Docker setup below.
 
-- `bundles/resnet18/model.pt`
-- `bundles/resnet18_ensemble/member0/model.pt`
-- `bundles/resnet18_ensemble/member1/model.pt`
-- `bundles/resnet50/model.pt`
-
-Keep those files outside Git. The model metadata contains their expected checksums.
-The original `SHA256SUMS` describes the handover package, so its full verification
-requires the excluded original files too. Imported dashboard demo profiles can be
-viewed without starting the ML service, but new image classification requires it.
+The model metadata contains the expected weight checksums. The original
+`SHA256SUMS` describes the handover package, including original files intentionally
+excluded from the source repository. Imported dashboard demo profiles can be viewed
+without starting the ML service, but new image classification requires it.
 
 ## Start with Docker
 

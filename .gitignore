@@ -49,12 +49,13 @@ yarn-error.log*
 *.db
 *.log
 
-# Trained weights and datasets: distribute separately from source control
+# Ignore experimental weights and datasets; include the released model bundles
 *.pt
 *.pth
 *.onnx
 *.ckpt
 *.safetensors
+!/bundles/**/model.pt
 /datasets/
 /artifacts/
 
